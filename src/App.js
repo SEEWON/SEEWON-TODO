@@ -1,16 +1,18 @@
 import './App.css';
 import TodoList from './TodoList';
-import DoneList from './DoneList';
 import { useState } from 'react';
 
 function App() {
   let todoCnt = 3;
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([
-    { id: 1, text: '밥먹기', done: false },
-    { id: 2, text: '물마시기', done: false },
+    { id: 1, text: '밥먹기', isDone: false },
+    { id: 3, text: '물마시기', isDone: false },
   ]);
-  const [dones, setDones] = useState([{ id: 3, text: '숨쉬기', done: true }]);
+  const [dones, setDones] = useState([
+    { id: 2, text: '숨쉬기', isDone: true },
+    { id: 4, text: '잠자기', isDone: true },
+  ]);
 
   const onChange = (event) => {
     const {
@@ -22,7 +24,7 @@ function App() {
   const onSubmit = (event) => {
     event.preventDefault();
     todoCnt++;
-    setTodos([...todos, { id: todoCnt, text: inputValue, done: false }]);
+    setTodos([...todos, { id: todoCnt, text: inputValue, isDone: false }]);
     setInputValue('');
   };
 
@@ -38,7 +40,7 @@ function App() {
         <input type="submit" value="➕" />
       </form>
       <TodoList todos={todos} />
-      <DoneList dones={dones} />
+      <TodoList todos={dones} />
     </div>
   );
 }
