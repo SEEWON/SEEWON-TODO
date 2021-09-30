@@ -1,8 +1,81 @@
 import './App.css';
 import TodoList from './TodoList';
 import { React, useState } from 'react';
+import styled from 'styled-components';
 
-function App() {
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border: 1px solid gray;
+  border-radius: 1rem;
+  width: 300px;
+  height: 500px;
+
+  background-color: #ffffff;
+  position: absolute;
+`;
+
+//제목, input 부분
+const TodoHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+const InputForm = styled.div`
+  width: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px;
+  .submit {
+    border: none;
+    background-color: transparent;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.7);
+    }
+  }
+`;
+
+const Title = styled.div`
+  border-top: 1px solid gray;
+  width: 380px;
+  height: 30px;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fefbf3;
+`;
+
+//Todo List 부분
+const TodoListContainer = styled.div`
+  border-top: 1px dashed gray;
+  width: 380px;
+  height: 150px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+`;
+
+//Done List 부분
+const DoneListContainer = styled.div`
+  border-top: 1px dashed gray;
+  width: 380px;
+  height: 150px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+`;
+
+const App = () => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([]);
   const [dones, setDones] = useState([]);
@@ -46,20 +119,41 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          placeholder="할 일 추가하기"
-          maxlength={20}
-          onChange={onChange}
-        />
-        <input type="submit" value="➕" />
-      </form>
-      <TodoList todos={todos} onToggle={onToggleDone} onRemove={onRemoveTodo} />
-      <TodoList todos={dones} onToggle={onToggleUnDo} onRemove={onRemoveDone} />
+      <Box>
+        <TodoHeader>
+          <h1>오늘 할 일</h1>
+          <InputForm>
+            <form onSubmit={onSubmit}>
+              <input
+                type="text"
+                value={inputValue}
+                placeholder="할 일 추가하기"
+                maxlength={20}
+                onChange={onChange}
+              />
+              <input className="submit" type="submit" value="➕" />
+            </form>
+          </InputForm>
+        </TodoHeader>
+        <Title>📝To Do🤔 ({todos.length})</Title>
+        <TodoListContainer>
+          <TodoList
+            todos={todos}
+            onToggle={onToggleDone}
+            onRemove={onRemoveTodo}
+          />
+        </TodoListContainer>
+        <Title>✨Done🥳 ({dones.length})</Title>
+        <DoneListContainer>
+          <TodoList
+            todos={dones}
+            onToggle={onToggleUnDo}
+            onRemove={onRemoveDone}
+          />
+        </DoneListContainer>
+      </Box>
     </div>
   );
-}
+};
 
 export default App;
