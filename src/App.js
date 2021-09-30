@@ -1,6 +1,6 @@
 import './App.css';
 import TodoList from './TodoList';
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Box = styled.div`
@@ -77,9 +77,20 @@ const DoneListContainer = styled.div`
 
 const App = () => {
   const [inputValue, setInputValue] = useState('');
-  const [todos, setTodos] = useState([]);
-  const [dones, setDones] = useState([]);
+  const [todos, setTodos] = useState(
+    () => JSON.parse(window.localStorage.getItem('todos')) || []
+  );
+  const [dones, setDones] = useState(
+    () => JSON.parse(window.localStorage.getItem('dones')) || []
+  );
   const [todoCnt, setTodoCnt] = useState(0);
+
+  useEffect(() => {
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+  useEffect(() => {
+    window.localStorage.setItem('dones', JSON.stringify(dones));
+  }, [dones]);
 
   const onChange = (event) => {
     const {
