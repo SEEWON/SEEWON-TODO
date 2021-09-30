@@ -1,10 +1,17 @@
 import React from 'react';
+import { VscTriangleDown, VscTriangleUp, VscClose } from 'react-icons/vsc';
 
-const TodoListItem = ({ todo }) => {
+const TodoListItem = ({ todo, onRemove }) => {
+  const { id, text, isDone } = todo;
   return (
-    <div>
-      <input type="checkbox" />
-      <li>{todo.text}</li>
+    <div className="TodoListItem">
+      <div>
+        <li>{text}</li>
+        {isDone ? <VscTriangleUp /> : <VscTriangleDown />}
+      </div>
+      <div onClick={() => onRemove(id)}>
+        <VscClose />
+      </div>
     </div>
   );
 };

@@ -28,6 +28,13 @@ function App() {
     setInputValue('');
   };
 
+  const onRemoveTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+  const onRemoveDone = (id) => {
+    setDones(dones.filter((done) => done.id !== id));
+  };
+
   return (
     <div className="App">
       <form onSubmit={onSubmit}>
@@ -39,8 +46,8 @@ function App() {
         />
         <input type="submit" value="➕" />
       </form>
-      <TodoList todos={todos} />
-      <TodoList todos={dones} />
+      <TodoList todos={todos} onRemove={onRemoveTodo} />
+      <TodoList todos={dones} onRemove={onRemoveDone} />
     </div>
   );
 }
