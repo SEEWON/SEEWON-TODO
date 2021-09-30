@@ -1,11 +1,11 @@
 import React from 'react';
 import { VscTriangleDown, VscTriangleUp, VscClose } from 'react-icons/vsc';
 
-const TodoListItem = ({ todo, onRemove }) => {
+const TodoListItem = ({ todo, onToggle, onRemove }) => {
   const { id, text, isDone } = todo;
   return (
     <div className="TodoListItem">
-      <div>
+      <div onClick={() => onToggle(id)}>
         <li>{text}</li>
         {isDone ? <VscTriangleUp /> : <VscTriangleDown />}
       </div>

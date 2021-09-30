@@ -28,6 +28,21 @@ function App() {
     setInputValue('');
   };
 
+  //Todo에서 Done으로 해당 Item 옮기기
+  const onToggleDone = (id) => {
+    let obj = todos.filter((todo) => todo.id === id)[0];
+    setDones([...dones, { ...obj, isDone: !obj.isDone }]); //isDone값 toggle 후 Done에 추가
+    setTodos(todos.filter((todo) => todo.id !== id)); //Todo에서 삭제
+  };
+
+  //Done에서 Todo로 해당 Item 옮기기
+  const onToggleUnDo = (id) => {
+    let obj = dones.filter((done) => done.id === id)[0];
+    setTodos([...todos, { ...obj, isDone: !obj.isDone }]); //isDone값 toggle 후 Todo에 추가
+    setDones(dones.filter((done) => done.id !== id)); //Done에서 삭제
+  };
+
+  //Item 삭제하기
   const onRemoveTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
@@ -46,8 +61,8 @@ function App() {
         />
         <input type="submit" value="➕" />
       </form>
-      <TodoList todos={todos} onRemove={onRemoveTodo} />
-      <TodoList todos={dones} onRemove={onRemoveDone} />
+      <TodoList todos={todos} onToggle={onToggleDone} onRemove={onRemoveTodo} />
+      <TodoList todos={dones} onToggle={onToggleUnDo} onRemove={onRemoveDone} />
     </div>
   );
 }
