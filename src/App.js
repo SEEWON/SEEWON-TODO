@@ -30,14 +30,14 @@ function App() {
 
   //Todo에서 Done으로 해당 Item 옮기기
   const onToggleDone = (id) => {
-    let obj = todos.filter((todo) => todo.id === id)[0];
+    const obj = todos.filter((todo) => todo.id === id)[0];
     setDones([...dones, { ...obj, isDone: !obj.isDone }]); //isDone값 toggle 후 Done에 추가
     setTodos(todos.filter((todo) => todo.id !== id)); //Todo에서 삭제
   };
 
   //Done에서 Todo로 해당 Item 옮기기
   const onToggleUnDo = (id) => {
-    let obj = dones.filter((done) => done.id === id)[0];
+    const obj = dones.filter((done) => done.id === id)[0];
     setTodos([...todos, { ...obj, isDone: !obj.isDone }]); //isDone값 toggle 후 Todo에 추가
     setDones(dones.filter((done) => done.id !== id)); //Done에서 삭제
   };
