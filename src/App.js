@@ -83,7 +83,9 @@ const App = () => {
   const [dones, setDones] = useState(
     () => JSON.parse(window.localStorage.getItem('dones')) || []
   );
-  const [todoCnt, setTodoCnt] = useState(0);
+  const [todoCnt, setTodoCnt] = useState(
+    () => JSON.parse(window.localStorage.getItem('count')) || 0
+  );
 
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(todos));
@@ -91,6 +93,9 @@ const App = () => {
   useEffect(() => {
     window.localStorage.setItem('dones', JSON.stringify(dones));
   }, [dones]);
+  useEffect(() => {
+    window.localStorage.setItem('count', JSON.stringify(todoCnt));
+  }, [todoCnt]);
 
   const onChange = (event) => {
     const {
