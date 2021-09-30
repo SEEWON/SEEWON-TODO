@@ -15,7 +15,6 @@ const Box = styled.div`
   border-radius: 1rem;
   width: 300px;
   height: 500px;
-
   background-color: #ffffff;
   position: absolute;
 `;
@@ -27,6 +26,7 @@ const TodoHeader = styled.div`
   align-items: center;
   flex-direction: column;
 `;
+
 const InputForm = styled.div`
   width: 380px;
   display: flex;
@@ -90,6 +90,10 @@ const App = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    if (inputValue === '') {
+      alert('아무것도 입력하지 않았습니다.');
+      return false;
+    }
     setTodoCnt(todoCnt + 1);
     setTodos([...todos, { id: todoCnt, text: inputValue, isDone: false }]);
     setInputValue('');
