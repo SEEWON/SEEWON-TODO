@@ -32,10 +32,8 @@ const TodoListItem = ({ todo, onToggle, onRemove }) => {
         <Button onClick={() => onToggle(id)}>
           {isDone ? <VscTriangleUp /> : <VscTriangleDown />}
         </Button>
-        <Button>
-          <div onClick={() => onRemove(id)}>
-            <VscClose />
-          </div>
+        <Button onClick={() => onRemove(id)}>
+          <VscClose />
         </Button>
       </Buttons>
     </TodoItem>
