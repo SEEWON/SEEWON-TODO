@@ -17,4 +17,4 @@ https://react-todo-14th.vercel.app/
 - 공백 입력 시 예외 처리
 - react-icons를 이용한 버튼 사용
 
-Styled-Components는 처음 써 봤는데, js파일 안에서 CSS요소를 담은 컴포넌트를 바로 만들어 쓸 수 있다는 점에서 직관적이고 편한 것 같아요!
+Styled-Components는 처음 써 봤는데, js파일 안에서 CSS요소를 담은 컴포넌트를 바로 만들어 쓸 수 있다는 점에서 직관적이고 편한 것 같아요! 
